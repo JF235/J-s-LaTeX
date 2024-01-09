@@ -1,0 +1,119 @@
+\documentclass[10pt]{article}
+
+%============================================================================
+\usepackage{geometry}
+\geometry{
+    paper=a4paper,
+    bottom=2.5cm,
+    top=2.5cm,
+    nofoot=true,
+    left=2.2cm,
+    right=2.2cm,
+    twocolumn=true
+}
+
+%============================================================================
+\usepackage{xcolor}
+\definecolor{mazurblue}{HTML}{0067b1}
+\definecolor{mazurdarkblue}{HTML}{00478d}
+\definecolor{mazurgray}{HTML}{b0afb5}
+\definecolor{mazurlightblue}{HTML}{f6fbfe}
+\definecolor{mazurlightgreen}{HTML}{F6FAF3}
+
+%============================================================================
+% TITLE
+
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\color{mazurdarkblue}\sffamily\bfseries\LARGE}{\huge\thetitle}{.5cm}{}
+\titleformat{\subsection}[hang]{\color{mazurdarkblue}\sffamily\bfseries\Large}{\Large\thesubsection}{.1cm}{}
+
+%============================================================================
+% FONTS
+
+\usepackage{fontspec}
+\setmainfont{MinionPro}[
+    Path = fonts/MinionPro/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-It,
+    BoldItalicFont = *-BoldIt,
+]
+
+\setsansfont{HelveticaNeueMedium.ttf}[
+    Path = fonts/HelveticaNeue/,
+    BoldFont = HelveticaNeueBold.ttf
+]
+
+\newfontfamily\solutionfont{HelveticaNeueSolution.otf}[
+    Path = fonts/HelveticaNeue/
+]
+\newcommand\solutionformat{\solutionfont\addfontfeatures{LetterSpace=7.0}\color{mazurdarkblue}\scriptsize}
+
+%============================================================================
+% MATH FONTS
+
+\usepackage{unicode-math}
+\setmathfont{XITS Math}
+
+%============================================================================
+% EXERCISE BOX
+
+\usepackage[skins, breakable]{tcolorbox}
+\newcounter{mazurexcounter}[section]
+
+\newtcolorbox{mazurexbox}{enhanced, breakable, frame hidden, arc = 0mm, top=1mm, bottom=1mm, right=1mm, left=1mm, colback = mazurlightblue, borderline horizontal={1.5pt}{1pt}{mazurgray}}
+
+%\newenvironment{name}[argnum][default_arg1]{before_env}{after_env}
+
+\newenvironment{mazurex}[1][]
+{
+    \refstepcounter{mazurexcounter}
+    \par\medskip\noindent
+    {\bfseries\sffamily\color{mazurdarkblue} Exercise \thesection.\themazurexcounter~#1} 
+    \rmfamily\noindent\\*\vspace*{-6mm}
+    \begin{mazurexbox}
+    \small
+}
+{
+    \end{mazurexbox}\medskip
+}
+
+\newenvironment{mazursol}
+{
+    \medskip
+    {\solutionfont
+    \addfontfeatures{LetterSpace=7.0}
+    \color{mazurdarkblue}\scriptsize SOLUTION}}
+{}
+
+%============================================================================
+% CHECKMARK
+\usepackage{svg}
+\graphicspath{{./imgs/}}
+
+\newcommand{\checkmarkmazur}{\includesvg[height=.65\baselineskip,width=\baselineskip,keepaspectratio]{check.svg}}
+
+%============================================================================
+%============================================================================
+%============================================================================
+
+\begin{document}
+    \section{Introduction}
+
+    \begin{mazurex}[Pendulum Energy]
+        Consider a 0.10-kg pendulum swinging at a maximum speed of 0.80 m/s inside a box that contains $1.0 \times 10^{23}$ nitrogen molecules. The mass of a nitrogen molecule is $4.7 \times 10^{-26}$ kg, and at room temperature a typical nitrogen molecule moves at 500 m/s. What are (\textit{a}) the mechanical energy of the pendulum, (\textit{b}) the average kinetic energy of one nitrogen molecule, and (\textit{c}) the sum of the average kinetic energies of all the nitrogen molecules?
+
+        \begin{mazursol}
+            (\textit{a}) The mechanical energy of the pendulum is equal its maximum kinetic energy: $\frac{1}{2}mv^2 = \frac{1}{2}(0.10\text{ kg})(0.80\text{ m/s})^2 = 3.2\times 10^{-2}\text{ J}$. \checkmarkmazur
+
+            \medskip
+
+            (\textit{b}) The average kinetic energy of a nitrogen molecule is $\frac{1}{2}(4.7\times 10^{-26}\text{ kg})(500\text{ m/s})^2 = 5.9\times 10^{-21}\text{ J}$. Comparing this value with the result I obtained in part \textit{a}, I see that the mechanical energy of the pendulum is more than 18 orders of magnitude (a billion billion times) greater than the average kinetic energy of the individual nitrogen molecules. \checkmarkmazur
+
+            \medskip
+
+            (\textit{c}) The sum of the average kinetic energies of all the nitrogen molecules is $(1.0 \times 10^{23})(5.9 \times 10^{-21}\text{ J}) = 5.9 \times 10^2\text{ J}$. Note that this thermal energy (the kinetic energy associated with the incoherent motion of all the nitrogen molecules) is more than four orders of magnitude greater than the mechanical energy of the pendulum. \checkmarkmazur
+        \end{mazursol}
+    \end{mazurex}
+\end{document}

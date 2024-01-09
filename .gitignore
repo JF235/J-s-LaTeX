@@ -1,0 +1,4 @@
+*.synctex.gz
+*.pdf
+fonts/*
+svg-inkscape/*

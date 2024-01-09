@@ -1,0 +1,70 @@
+% REFERENCE: https://pt.overleaf.com/learn/latex/Theorems_and_proofs
+
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+
+% Melhoria no tratamento de ambientes do tipo teoremas, como:
+% - Ambientes sem numeração, como Remarks
+% - Ambientes com estilos personalizados (definition, plain, remark)
+% - Ambiente "proof"
+\usepackage{amsthm}
+
+% Cria novo ambiente chamado "theorem" que imprime a palavra "Teorema" em negrito e seguida da numeração 
+\newtheorem{theorem}{Teorema}
+
+% Cria novo ambiente chamado "definition" com o rótulo "Definição" e recebe uma numeração que reseta a cada nova "section"
+\newtheorem{definition}{Definição}[section]
+
+% Renomeia o nome do ambiente "proof"
+\AtBeginDocument{\renewcommand\proofname{Prova}}
+% Renomeia o símbolo impresso ao final do ambiente "proof"
+\AtBeginDocument{\renewcommand\qedsymbol{$QED$}}
+
+% Formata o comando "\cref{}"
+% #1 é o placeholder para numeração
+% #2 é para o começo do link
+% #3 é para o fim do link
+\usepackage{cleveref}
+\crefformat{definition}{#2definição #1#3}
+\crefformat{theorem}{#2teorema #1#3}
+
+\begin{document}
+
+    \section{Torneios e Caminhos Hamiltonianos}
+
+    % A palavra entre colchetes após a definição "Torneio", indica a palavra que é impressa após o nome do ambiente entre parênteses
+    \begin{definition}[Torneio]\label{def:torneio}
+        Um torneio é um grafo direcionado obtido a partir da escolha de somente uma direção em cada aresta de um grafo não-direcionado completo. Em outras palavras,  é um grafo no qual todos os pares de vértices são conectados por uma aresta orientada em somente uma direção.
+    \end{definition}
+
+    \begin{theorem}\label{thm:1}
+        Todo torneio (\cref{def:torneio}) contém um caminho Hamiltoniano.
+    \end{theorem}
+
+    \begin{proof}
+        Por indução no número de vértices $n$.
+        
+        \textbf{Base} Um torneio com um vértice, $n=1$, tem um caminho Hamiltoniano que começa e acaba no próprio vértice.
+        
+        \textbf{Hipótese} Usando indução fraca, suponha que um torneio com $n=k$ vértices tenha um caminho Hamiltoniano.
+        
+        \textbf{Passo} Seja $T$ um torneio qualquer com $k+1$ vértices. Escolhendo um vértice arbitrário $u$ de $T$ e removendo-o, resulta um grafo $T-u$ que continua sendo um torneio. $T-u$ tem tamanho $k$ e, pela hipótese de indução, contém  um caminho hamiltoniano $H$.
+        
+        Vamos denotar o caminho $H$ como
+        $$H = v_1\to v_2\to v_3\to \cdots \to v_{k-1}\to v_k$$
+        
+        O vértice $u$ tem uma aresta orientada com cada um dos vértices presentes no caminho $H$, pois $T$ era inicialmente um torneio.
+        
+        Sendo assim, existem três possibilidades:
+        \begin{itemize}
+            \item Nenhum dos vértices em $H$ aponta na direção de $u$, ou seja, não existe $i\in\{1,2,...,k\}$ tal que $v_i\to u$. Sendo assim, existe a aresta que conecta $u$ ao primeiro elemento de $H$, i.e., $u\to v_1$. Colocando $u$ no começo da caminho, mostramos que $T$ tem um caminho hamiltoniano $H'$.
+        $$H' = u\to v_1 \to \cdots \to v_k$$
+        \item O último vértice de $H$ aponta para $u$, i.e., $v_k\to u$. Colocando $u$ no final do caminho, mostramos que $T$ tem um caminho hamiltoniano $H'$.
+        $$H' = v_1 \to \cdots \to v_k \to u$$
+        \item Existe algum elemento $v_i$, com $i\in \{1,2,...,k-1\}$ na sequência que aponta para $u$. Seja então $v_i$ o elemento que aponta para $u$ com $i$ máximo. Isso implica que não existe nenhum vértice $v_j$ que aponta para $u$, quando $j > i$. Sendo assim, $v_i \to u$ e $u \to v_{i+1}$. Logo, basta colocar o vértice $u$ entre os vértices $v_i$ e $v_{i+1}$, mostrando que $T$ tem um caminho hamiltoniano $H'$.
+        $$H' = v_1\to \cdots \to v_i \to u \to v_{i+1} \to \cdots \to v_k$$ 
+        \end{itemize}
+    \end{proof}
+
+    Portanto, o maior caminho de um torneio qualquer é um caminho Hamiltoniano (\cref{thm:1}).
+\end{document}

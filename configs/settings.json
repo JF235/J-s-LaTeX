@@ -2,7 +2,7 @@
     // Editor
     "workbench.colorTheme": "Monokai",
     "workbench.activityBar.location": "side",
-    "workbench.statusBar.visible": false,
+    "workbench.statusBar.visible": true,
     "editor.fontFamily": "'JetBrains Mono','Courier New', monospace",
     "editor.wordWrap": "on",
     "editor.fontSize": 16,
@@ -21,6 +21,7 @@
     "workbench.layoutControl.enabled": false,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "smooth",
+    "diffEditor.ignoreTrimWhitespace": false,
 
     // LaTeX Workshop
     "latex-workshop.latex.autoBuild.run": "never",
@@ -50,6 +51,7 @@
                 "-file-line-error",
                 "-lualatex",
                 "-outdir=%OUTDIR%",
+                "-shell-escape",
                 "%DOC%"
             ],
             "env": {}
@@ -68,4 +70,7 @@
             "env": {}
         }
     ],
+    "workbench.editorAssociations": {
+        "*.pdf": "latex-workshop-pdf-hook"
+    },
 }

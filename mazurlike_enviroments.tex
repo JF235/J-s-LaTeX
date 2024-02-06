@@ -88,32 +88,58 @@
 {}
 
 %============================================================================
-% CHECKMARK
+% CHECKMARK & HAND
 \usepackage{svg}
 \graphicspath{{./imgs/}}
 
-\newcommand{\checkmarkmazur}{\includesvg[height=.65\baselineskip,width=\baselineskip,keepaspectratio]{check.svg}}
+\newcommand{\checkmarkmazur}{\includesvg[height=.65\baselineskip,width=\baselineskip,keepaspectratio]{checkmarkmazur.svg}}
+\newcommand{\handmazur}{\includesvg[height=6.5mm]{handmazur.svg}}
+
+
+%============================================================================
+% QUESTION BOX
+
+\newtcolorbox[auto counter,number within=section]% Contador dentro de seção
+{mazurq}[1][]% Nome: questionbox e um argumento opcional.
+{
+enhanced,
+colback=mazurlightgreen, % Cor do Fundo
+frame empty, % Não tem moldura
+fonttitle=\qquad\sffamily\bfseries, % Fonte do título
+coltitle=black,
+title=\thetcbcounter, % Título é somente o contador da caixa
+detach title, % O título fica de fora da moldura
+before upper=\tcbtitle\ , % Antes do texto da parte superior
+fontupper=\small\ , % Fonte da parte superior
+#1, % Rótulo opcional
+arc=0mm, % Ângulos retos
+left=1mm, right=1mm, top=1mm, bottom=1mm, % Margens
+overlay={\node[anchor=south west,outer sep=0pt, yshift=-17pt,xshift=7pt] at (frame.north west) {\handmazur}; }} % Coloca a mãozinha
 
 %============================================================================
 %============================================================================
 %============================================================================
 
 \begin{document}
-    \section{Introduction}
+\section{Introduction}
 
-    \begin{mazurex}[Pendulum Energy]
-        Consider a 0.10-kg pendulum swinging at a maximum speed of 0.80 m/s inside a box that contains $1.0 \times 10^{23}$ nitrogen molecules. The mass of a nitrogen molecule is $4.7 \times 10^{-26}$ kg, and at room temperature a typical nitrogen molecule moves at 500 m/s. What are (\textit{a}) the mechanical energy of the pendulum, (\textit{b}) the average kinetic energy of one nitrogen molecule, and (\textit{c}) the sum of the average kinetic energies of all the nitrogen molecules?
+\begin{mazurex}[Pendulum Energy]
+    Consider a 0.10-kg pendulum swinging at a maximum speed of 0.80 m/s inside a box that contains $1.0 \times 10^{23}$ nitrogen molecules. The mass of a nitrogen molecule is $4.7 \times 10^{-26}$ kg, and at room temperature a typical nitrogen molecule moves at 500 m/s. What are (\textit{a}) the mechanical energy of the pendulum, (\textit{b}) the average kinetic energy of one nitrogen molecule, and (\textit{c}) the sum of the average kinetic energies of all the nitrogen molecules?
 
-        \begin{mazursol}
-            (\textit{a}) The mechanical energy of the pendulum is equal its maximum kinetic energy: $\frac{1}{2}mv^2 = \frac{1}{2}(0.10\text{ kg})(0.80\text{ m/s})^2 = 3.2\times 10^{-2}\text{ J}$. \checkmarkmazur
+    \begin{mazursol}
+        (\textit{a}) The mechanical energy of the pendulum is equal its maximum kinetic energy: $\frac{1}{2}mv^2 = \frac{1}{2}(0.10\text{ kg})(0.80\text{ m/s})^2 = 3.2\times 10^{-2}\text{ J}$. \checkmarkmazur
 
-            \medskip
+        \medskip
 
-            (\textit{b}) The average kinetic energy of a nitrogen molecule is $\frac{1}{2}(4.7\times 10^{-26}\text{ kg})(500\text{ m/s})^2 = 5.9\times 10^{-21}\text{ J}$. Comparing this value with the result I obtained in part \textit{a}, I see that the mechanical energy of the pendulum is more than 18 orders of magnitude (a billion billion times) greater than the average kinetic energy of the individual nitrogen molecules. \checkmarkmazur
+        (\textit{b}) The average kinetic energy of a nitrogen molecule is $\frac{1}{2}(4.7\times 10^{-26}\text{ kg})(500\text{ m/s})^2 = 5.9\times 10^{-21}\text{ J}$. Comparing this value with the result I obtained in part \textit{a}, I see that the mechanical energy of the pendulum is more than 18 orders of magnitude (a billion billion times) greater than the average kinetic energy of the individual nitrogen molecules. \checkmarkmazur
 
-            \medskip
+        \medskip
 
-            (\textit{c}) The sum of the average kinetic energies of all the nitrogen molecules is $(1.0 \times 10^{23})(5.9 \times 10^{-21}\text{ J}) = 5.9 \times 10^2\text{ J}$. Note that this thermal energy (the kinetic energy associated with the incoherent motion of all the nitrogen molecules) is more than four orders of magnitude greater than the mechanical energy of the pendulum. \checkmarkmazur
-        \end{mazursol}
-    \end{mazurex}
+        (\textit{c}) The sum of the average kinetic energies of all the nitrogen molecules is $(1.0 \times 10^{23})(5.9 \times 10^{-21}\text{ J}) = 5.9 \times 10^2\text{ J}$. Note that this thermal energy (the kinetic energy associated with the incoherent motion of all the nitrogen molecules) is more than four orders of magnitude greater than the mechanical energy of the pendulum. \checkmarkmazur
+    \end{mazursol}
+\end{mazurex}
+
+\begin{mazurq}
+    The nitrogen molecules in Exercise 19.1 move considerably faster than the pendulum and continuously bombard the pendulum from all sides. (a) Why does this bombardment slow the pendulum down? (b) When the pendulum is at rest, why don't we see the effects of this continuous bombardment?
+\end{mazurq}
 \end{document}

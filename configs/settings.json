@@ -2,7 +2,6 @@
     // Editor
     "workbench.colorTheme": "Monokai",
     "workbench.activityBar.location": "side",
-    "workbench.statusBar.visible": true,
     "editor.fontFamily": "'JetBrains Mono','Courier New', monospace",
     "editor.wordWrap": "on",
     "editor.fontSize": 16,
@@ -22,6 +21,7 @@
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "smooth",
     "diffEditor.ignoreTrimWhitespace": false,
+    "editor.bracketPairColorization.enabled": false,
 
     // LaTeX Workshop
     "latex-workshop.latex.autoBuild.run": "never",
